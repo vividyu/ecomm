@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Item from "./Item";
 import './Ecomm.css'
+import { Link } from 'react-router-dom';
 
 function Ecomm() {
     const arr = new Array(9);
@@ -11,8 +12,8 @@ function Ecomm() {
     return (
         <div>
             <input placeholder="Search..."></input>
-            <button>Login</button>
-            <button>Bag</button>
+            <Link className="login-link" to="/login">Login</Link>
+            <Link className="bag-link" to="/bag">Bag</Link>
             <div className="item-container">
                 {arr.map(i => <Item title="basketball" price="2.5" />)}
             </div>

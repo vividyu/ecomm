@@ -1,11 +1,20 @@
 import './App.css';
 import Ecomm from './Ecomm';
+import Login from "./Login";
+import Bag from "./Bag";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Ecomm />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Ecomm key="ecomm"/>} />
+          <Route path="/login" element={<Login key="login" />} />
+          <Route path="/bag" element={<Bag key="bag" />}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
