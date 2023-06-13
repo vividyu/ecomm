@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ikun from "./assets/ikun.png";
+import ikun from "../assets/ikun.png";
 
 function Item({title, price}) {
 
