@@ -5,7 +5,7 @@ function Item({title, price}) {
 
     return (
         <div>
-            <img src={ikun}></img>
+            <img src={ikun} alt=""></img>
             <p>Title: {title}</p>
             <p>Price: {price} years</p>
             <button>Add to Bag</button>
