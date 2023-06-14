@@ -1,23 +1,31 @@
-import { useState } from "react";
-import Item from "./Item";
-import './Ecomm.css'
+import React, { useState, useEffect } from 'react';
+import './Ecomm.css';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import Item from './Item';
 
 function Ecomm() {
-    const arr = new Array(9);
-    for (let i = 0; i < 9; i++) {
-        arr[i] = i + 1;
-    }
+    const [prods, setProds] = useState([]);
+    
+    useEffect(() => {
+        async function fetchData(){
+            const response = await axios.get(
+                `https://fakestoreapi.com/products`
+              );
+              setProds(response.data);
+        }
+        fetchData();
+    }, []);
 
     return (
         <div className="main-container">
-            <nav>
-                <input className="search-bar" placeholder="Search..."></input>
+            <nav className='nav-container'>
+                <input className="search-bar" placeholder="Search..." />
                 <Link className="login-link" to="/login">Login</Link>
                 <Link className="bag-link" to="/bag">Bag</Link>
             </nav>
             <div className="item-container">
-                {arr.map(i => <Item title="basketball" price="2.5" />)}
+                {prods.map(product => <Item key={product.id} product={product} />)}
             </div>
         </div>
     )

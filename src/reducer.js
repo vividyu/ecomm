@@ -13,14 +13,6 @@ function reducer(state = initialState, action) {
         case DELETE_ITEM:
             return { ...state };
 
-        //   case DELETE_LIKED_MOVIE:
-        //     return {
-        //       ...state,
-        //       likedMovies: state.likedMovies.filter(
-        //         (movie) => movie.id !== action.payload.id
-        //       ),
-        //     };
-
         //   case STROE_MOVIE_DATA:
         //     return {
         //       ...state,
@@ -33,8 +25,6 @@ function reducer(state = initialState, action) {
         //       },
         //     };
 
-        //   case STORE_MOVIE_DETAILS:
-        //     return { ...state, movieDetails: action.payload };
         default:
             return state;
     }

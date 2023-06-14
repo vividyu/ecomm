@@ -1,13 +1,12 @@
 import { useState } from "react";
-import ikun from "../assets/ikun.png";
+import './Item.css';
 
-function Item({title, price}) {
-
+function Item({product}) {
     return (
         <div>
-            <img src={ikun} alt=""></img>
-            <p>Title: {title}</p>
-            <p>Price: {price} years</p>
+            <img className="prod-image" src={product.image} alt={product.title}></img>
+            <p>Title: {product.title}</p>
+            <p>Price: ${product.price}</p>
             <button>Add to Bag</button>
         </div>
     );
