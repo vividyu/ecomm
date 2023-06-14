@@ -4,15 +4,22 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Bag() {
-    const arr = new Array(6);
-    for (let i = 0; i < 6; i++) {
-        arr[i] = i + 1;
-    }
+    const [prods, setProds] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get(
+                `https://fakestoreapi.com/products`
+            );
+            setProds(response.data);
+        }
+        fetchData();
+    }, []);
 
     return (
         <div>
             <div className="item-container">
-                {arr.map(i => <Item title="dance" price="2.5" />)}
+                {prods.slice(0, 6).map(product => <Item key={product.id} product={product} />)}
             </div>
             <Link className="back-link" to="/">Back</Link>
         </div>
