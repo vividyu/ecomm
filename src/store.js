@@ -1,7 +1,7 @@
 const initialState = {
-    userInfo: {},
-    userBag: {},
-  };
-  
-  export default initialState;
-  
+  curUser: "Guest",
+  userInfo: {},
+  userBag: {},
+};
+
+export default initialState;
