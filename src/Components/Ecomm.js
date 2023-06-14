@@ -6,6 +6,7 @@ import Item from './Item';
 
 function Ecomm() {
     const [prods, setProds] = useState([]);
+    const [keyword, setKeyword] = useState("");
     
     useEffect(() => {
         async function fetchData(){
@@ -20,12 +21,12 @@ function Ecomm() {
     return (
         <div className="main-container">
             <nav className='nav-container'>
-                <input className="search-bar" placeholder="Search..." />
+                <input className="search-bar" placeholder="Search... " value={keyword} onChange={e => setKeyword(e.target.value)} />
                 <Link className="login-link" to="/login">Login</Link>
                 <Link className="bag-link" to="/bag">Bag</Link>
             </nav>
             <div className="item-container">
-                {prods.map(product => <Item key={product.id} product={product} />)}
+                {prods.filter(prod => prod.title.includes(keyword)).map(product => <Item key={product.id} product={product} />)}
             </div>
         </div>
     )
