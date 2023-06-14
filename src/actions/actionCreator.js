@@ -15,8 +15,8 @@ export const deleteItem = (item) => ({
   payload: item,
 });
 
-export const getProducts = (id) => {
-  return async (dispatch) => {
+export const getProducts = () => {
+  return async dispatch => {
     const response = await axios.get(
       `https://fakestoreapi.com/products`
     );

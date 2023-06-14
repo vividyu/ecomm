@@ -3,7 +3,12 @@ import {
     DELETE_ITEM,
 } from "./actions/actionConstants";
 
-import initialState from "./store";
+const initialState = {
+    Data: [],
+    curUser: "Guest",
+    userInfo: [{ user: "Guest", pwd: "" }],
+    userBag: [],
+};
 
 function reducer(state = initialState, action) {
     switch (action.type) {
