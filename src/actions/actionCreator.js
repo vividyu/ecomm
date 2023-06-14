@@ -13,30 +13,11 @@ export const deleteItem = (item) => ({
   payload: item,
 });
 
-export const getMovies = (page, sortWord) => {
-  return async (dispatch, getState) => {
-
-    const movieData = getState().movieData;
-
-    if (movieData[page]) {
-      return;
-    }
-
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&` + `&page=${page}` + `&api_key=${API_KEY_V3}`
-    );
-
-    dispatch(
-      storeMovieData(page, response.data.results, response.data.total_pages)
-    );
-  };
-};
-
-export const getMovieDetails = (movie_id) => {
+export const getProducts = (id) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY_V3}&language=en-US`
+      `https://fakestoreapi.com/products`
     );
-    dispatch(storeMovieDetails(response.data));
+    dispatch(storeProdDetails(response.data));
   };
 };

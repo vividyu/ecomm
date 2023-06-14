@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Item from "./Item";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function Bag(){
+function Bag() {
     const arr = new Array(6);
     for (let i = 0; i < 6; i++) {
         arr[i] = i + 1;
