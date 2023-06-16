@@ -1,4 +1,10 @@
 const ADD_ITEM = "ADD_ITEM";
 const DELETE_ITEM = "DELETE_ITEM";
+const SET_PROD = "SET_PROD";
 
-export default { ADD_ITEM, DELETE_ITEM }
+export const Actions =
+{
+    ADD_ITEM,
+    DELETE_ITEM,
+    SET_PROD
+}
