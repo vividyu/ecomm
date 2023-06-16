@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './Item.css';
+import './ItemInBag.css';
 
 function Item({product}) {
     return (

@@ -1,17 +1,14 @@
-import {
-  ADD_ITEM,
-  DELETE_ITEM
-} from "./actionConstants";
+import Actions from "./actionConstants";
 
 import axios from "axios";
 
 export const addItem = (item) => ({
-  type: ADD_ITEM,
+  type: Actions.ADD_ITEM,
   payload: item,
 });
 
 export const deleteItem = (item) => ({
-  type: DELETE_ITEM,
+  type: Actions.DELETE_ITEM,
   payload: item,
 });
 

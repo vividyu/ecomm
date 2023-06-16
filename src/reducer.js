@@ -1,16 +1,13 @@
 import initialState from './store';
 
-import {
-    ADD_ITEM,
-    DELETE_ITEM,
-} from "./actions/actionConstants";
+import Actions from "./actions/actionConstants";
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_ITEM:
+        case Actions.ADD_ITEM:
             return { ...state };
 
-        case DELETE_ITEM:
+        case Actions.DELETE_ITEM:
             return { ...state };
 
         //   case STROE_MOVIE_DATA:

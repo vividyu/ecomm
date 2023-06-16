@@ -1,5 +1,9 @@
-.ikun{
+.ikun {
     width: 15%;
     height: 15%;
     margin: 30px;
+}
+
+.input-box {
+    margin: 20px;
 }
