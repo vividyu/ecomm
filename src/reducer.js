@@ -1,14 +1,9 @@
+import initialState from './store';
+
 import {
     ADD_ITEM,
     DELETE_ITEM,
 } from "./actions/actionConstants";
-
-const initialState = {
-    Data: [],
-    curUser: "Guest",
-    userInfo: [{ user: "Guest", pwd: "" }],
-    userBag: [],
-};
 
 function reducer(state = initialState, action) {
     switch (action.type) {

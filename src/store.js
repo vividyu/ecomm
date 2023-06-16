@@ -1,7 +1,8 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import reducer from './reducer';
+const initialState = {
+    Data: [],
+    curUser: "Guest",
+    userInfo: [{ user: "Guest", pwd: "" }],
+    userBag: [],
+};
 
-const store = createStore(reducer, applyMiddleware(thunk));
-
-export default store;
+export default initialState;
