@@ -1,4 +1,4 @@
-import Actions from "./actionConstants";
+import {Actions} from "./actionConstants";
 import axios from "axios";
 
 const addItem = (item) => ({
@@ -11,13 +11,13 @@ const deleteItem = (item) => ({
   payload: item,
 });
 
-const setProducts = (item) => ({
+const setProducts = (prods) => ({
   type: Actions.SET_PROD,
-  payload: item,
+  payload: prods,
 });
 
 const getProducts = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     const response = await axios.get(
       `https://fakestoreapi.com/products`
     );
@@ -25,9 +25,15 @@ const getProducts = () => {
   };
 };
 
+const setCurUser = (user) => ({
+  type: Actions.SET_USER,
+  payload: user,
+});
+
 export const actions = {
   addItem,
   deleteItem,
   getProducts,
-  setProducts
+  setProducts,
+  setCurUser,
 }

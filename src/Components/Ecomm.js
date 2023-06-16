@@ -3,19 +3,13 @@ import './Ecomm.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import Item from './Item';
+import { Connect, connect } from 'react-redux';
+import { actions } from "../actions/actionCreator";
 
-function Ecomm() {
-    const [prods, setProds] = useState([]);
+function Ecomm(props) {
     const [keyword, setKeyword] = useState("");
-    
     useEffect(() => {
-        async function fetchData(){
-            const response = await axios.get(
-                `https://fakestoreapi.com/products`
-              );
-              setProds(response.data);
-        }
-        fetchData();
+        props.getProducts();
     }, []);
 
     return (
@@ -26,10 +20,24 @@ function Ecomm() {
                 <Link className="bag-link" to="/bag">Bag</Link>
             </nav>
             <div className="item-container">
-                {prods.filter(prod => prod.title.includes(keyword)).map(product => <Item key={product.id} product={product} />)}
+                {props.initData.filter(prod => prod.title.includes(keyword)).map(product => <Item key={product.id} product={product} />)}
             </div>
         </div>
     )
 }
 
-export default Ecomm;
+const mapStateToProps = (state) => (
+    {
+        initData: state.initData,
+        userBag: state.userBag,
+    }
+)
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addItem: () => dispatch(actions.addItem()),
+        getProducts: () => dispatch(actions.getProducts())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Ecomm);

@@ -2,28 +2,27 @@ import initialState from './store';
 
 import { Actions } from "./actions/actionConstants";
 
-function reducer(state = initialState, action) {
+function reducer(state = initialState, action = {}) {
     switch (action.type) {
         case Actions.ADD_ITEM:
-            return { ...state };
+            return {
+                ...state,
+                userBag: [...state.userBag, ...action.payload]
+            };
 
         case Actions.DELETE_ITEM:
-            return { ...state };
+            return {
+                ...state,
+                userBag: state.userBag.filter((item) => item.id !== action.payload.id),
+            };
 
-        //   case STROE_MOVIE_DATA:
-        //     return {
-        //       ...state,
-        //       movieData: {
-        //         ...state.movieData,
-        //         [action.payload.page]: {
-        //           movies: action.payload.movies,
-        //           totalPages: action.payload.totalPages,
-        //         },
-        //       },
-        //     };
-
+        case Actions.SET_PROD:
+            return {
+                ...state,
+                initData: [...state.initData, ...action.payload],
+            };
         default:
-            return state;
+            return { ...state };
     }
 }
 
