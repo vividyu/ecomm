@@ -19,7 +19,7 @@ function reducer(state = initialState, action = {}) {
         case Actions.SET_PROD:
             return {
                 ...state,
-                initData: [...state.initData, ...action.payload],
+                initData: [...action.payload],
             };
         default:
             return { ...state };

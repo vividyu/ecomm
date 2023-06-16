@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './Ecomm.css';
 import { Link } from 'react-router-dom';
-import axios from "axios";
 import Item from './Item';
-import { Connect, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
 
 function Ecomm(props) {
     const [keyword, setKeyword] = useState("");
+
     useEffect(() => {
         props.getProducts();
     }, []);
+
+    const filteredProducts = (props.initData || []).filter(prod => prod.title.toLowerCase().includes(keyword.toLowerCase()));
 
     return (
         <div className="main-container">
@@ -20,7 +22,7 @@ function Ecomm(props) {
                 <Link className="bag-link" to="/bag">Bag</Link>
             </nav>
             <div className="item-container">
-                {props.initData.filter(prod => prod.title.includes(keyword)).map(product => <Item key={product.id} product={product} />)}
+                {filteredProducts.map(product => <Item key={product.id} product={product} />)}
             </div>
         </div>
     )
