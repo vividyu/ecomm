@@ -18,6 +18,7 @@ const setProducts = (prods) => ({
 
 const getProducts = () => {
   return async (dispatch, getState) => {
+    console.log("getProducts() has been called");
     const response = await axios.get(
       `https://fakestoreapi.com/products`
     );

@@ -21,6 +21,11 @@ function reducer(state = initialState, action = {}) {
                 ...state,
                 initData: [...action.payload],
             };
+        case Actions.SET_USER:
+            return {
+                ...state,
+                curUser: action.payload,
+            };
         default:
             return { ...state };
     }

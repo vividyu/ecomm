@@ -1,5 +1,7 @@
 import { useState } from "react";
 import './Item.css';
+import { connect } from 'react-redux';
+import { actions } from "../actions/actionCreator";
 
 function Item({product}) {
     return (
@@ -12,4 +14,19 @@ function Item({product}) {
     );
 }
 
-export default Item;
+const mapStateToProps = (state) => (
+    {
+        initData: state.initData,
+        curUser: state.curUser,
+        userBag: state.userBag,
+    }
+)
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addItem: () => dispatch(actions.addItem()),
+        getProducts: () => dispatch(actions.getProducts())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item);

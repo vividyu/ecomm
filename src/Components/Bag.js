@@ -2,19 +2,11 @@ import { useState, useEffect } from "react";
 import ItemInBag from "./ItemInBag";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { actions } from "../actions/actionCreator";
 
-function Bag() {
+function Bag(props) {
     const [prods, setProds] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await axios.get(
-                `https://fakestoreapi.com/products`
-            );
-            setProds(response.data);
-        }
-        fetchData();
-    }, []);
 
     return (
         <div>
@@ -25,4 +17,19 @@ function Bag() {
         </div>
     )
 }
-export default Bag;
+
+const mapStateToProps = (state) => (
+    {
+        userInfo: state.userInfo,
+        curUser: state.curUser,
+        userBag: state.userBag,
+    }
+)
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurUser: () => dispatch(actions.addItem()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bag);

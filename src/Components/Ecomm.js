@@ -12,7 +12,7 @@ function Ecomm(props) {
         props.getProducts();
     }, []);
 
-    const filteredProducts = (props.initData || []).filter(prod => prod.title.toLowerCase().includes(keyword.toLowerCase()));
+    const filteredProducts = (props.initData || []).filter(prod => prod.title.includes(keyword));
 
     return (
         <div className="main-container">
@@ -31,6 +31,7 @@ function Ecomm(props) {
 const mapStateToProps = (state) => (
     {
         initData: state.initData,
+        curUser: state.curUser,
         userBag: state.userBag,
     }
 )
