@@ -30,8 +30,7 @@ function Login(props) {
 
         if (isValidUser) {
             props.setCurUser(user);
-            props.addItem(user, null);
-
+            props.createBags(user);
         } else {
             console.log("Invalid user or password");
             alert("Invalid user or password");
@@ -73,8 +72,9 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addItem: (user, item) => dispatch(actions.addItem(user, item)),
+        addItem: (user, product, quantity) => dispatch(actions.addItem(user, product, quantity)),
         setCurUser: (user) => dispatch(actions.setCurUser(user)),
+        createBags: (user) => dispatch(actions.createBags(user)),
     }
 }
 

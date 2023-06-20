@@ -1,9 +1,9 @@
 import {Actions} from "./actionConstants";
 import axios from "axios";
 
-const addItem = (user, item) => ({
+const addItem = (user, product, quantity) => ({
   type: Actions.ADD_ITEM,
-  payload: { user, item },
+  payload: { user, product, quantity },
 });
 
 const deleteItem = (item) => ({
@@ -36,6 +36,11 @@ const mergeBags = (user) => ({
   payload: user,
 });
 
+const createBags = (user) => ({
+  type: Actions.CREATE_BAGS,
+  payload: user,
+});
+
 export const actions = {
   addItem,
   deleteItem,
@@ -43,4 +48,5 @@ export const actions = {
   setProducts,
   setCurUser,
   mergeBags,
+  createBags,
 }

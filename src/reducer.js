@@ -4,30 +4,18 @@ import { Actions } from "./actions/actionConstants";
 
 function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case Actions.ADD_ITEM: {
-      const { user, item } = action.payload;
-      const userBag = state.userBag.find(bag => bag.user === user);
 
-      if (!userBag) {
-        //first time login, create user bag
-        return {
-          ...state,
-          userBag: [...state.userBag, { user: user, items: [] }],
-        };
-      } else {
-        if (!item) {
-          //user login again, just do nothing with bags 
-          return { ...state };
-        } else {
-          return {
-            ...state,
-            userBag: state.userBag.map(bag =>
-              bag.user === user ? { ...bag, items: [...bag.items, item] } : bag
-            )
-          };
-        }
-      }
-    }
+    case Actions.ADD_ITEM: {
+      const { user, product, quantity } = action.payload;
+      //const userBag = state.userBag.find(bag => bag.user === user);
+
+      return {
+        ...state,
+        userBag: state.userBag.map(bag =>
+          bag.user === user ? { ...bag, items: [...bag.items, { product: product, quantity: quantity }] } : bag
+        )
+      };
+    };
 
     case Actions.DELETE_ITEM:
       return {
@@ -49,6 +37,22 @@ function reducer(state = initialState, action = {}) {
 
     case Actions.MERGE_BAGS:
       return { ...state };
+
+    case Actions.CREATE_BAGS: {
+      const user = action.payload;
+      const userBag = state.userBag.find(bag => bag.user === user);
+
+      if (!userBag) {
+        //first time login, create user bag
+        return {
+          ...state,
+          userBag: [...state.userBag, { user: user, items: [] }],
+        };
+      } else {
+        //user login again, just do nothing with bags 
+        return { ...state };
+      }
+    };
 
     default:
       return { ...state };

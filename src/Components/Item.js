@@ -4,15 +4,11 @@ import { actions } from "../actions/actionCreator";
 import { useState } from 'react';
 
 function Item(props) {
-    const [count, setCount] = useState(0);
     const product = props.product;
     const curUser = props.curUser;
-    const curItems = props.userBag.filter(obj => obj.user === curUser)[0].items;
-
 
     function handleAdd() {  
-        props.addItem(curUser, product);
-        setCount(prev => prev + 1);
+        props.addItem(curUser, product, 1);
     }
 
     return (
