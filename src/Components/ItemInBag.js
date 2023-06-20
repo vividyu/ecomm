@@ -1,9 +1,17 @@
 import './ItemInBag.css';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
+import { useState, useEffect } from 'react';
 
 function ItemInBag(props) {
-    const product = props.product;
+    const [count, setCount] = useState(0);
+    const product = props.product.item;
+    const pCount = props.product.count;
+
+    useEffect(()=>{
+        setCount(pCount);
+    },[props.product])
+    
     return (
         <div>
             <img className="prod-image" src={product.image} alt={product.title}></img>
@@ -11,7 +19,7 @@ function ItemInBag(props) {
             <p>Price: ${product.price}</p>
             <span>
                 <button>-</button>
-                <input className='item-count' type='number' readOnly></input>
+                <input className='item-count' type='number' value={count} readOnly></input>
                 <button>+</button>
             </span>
 

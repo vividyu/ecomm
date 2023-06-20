@@ -4,6 +4,7 @@ import ikun from "../assets/ikun.png";
 import './Login.css';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
+import { Constants } from "../constants";
 
 function Login(props) {
     const [user, setUser] = useState("");

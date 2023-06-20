@@ -1,3 +1,5 @@
+import { Constants } from "./constants";
+
 const initialState = {
     initData: [
         { "id": 1, "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", "price": 109.95, "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday", "category": "men's clothing", "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", "rating": { "rate": 3.9, "count": 120 } },
@@ -22,10 +24,10 @@ const initialState = {
     ],
 
     //initData: [],
-    curUser: "g",
-    userInfo: [{ user: "g", pwd: "" }, { user: "123", pwd: "123" }, { user: "a", pwd: "a" }],
+    curUser: Constants.GUEST_USER,
+    userInfo: [{ user: Constants.GUEST_USER, pwd: "" }, { user: "123", pwd: "123" }, { user: "a", pwd: "a" }],
     userBag: [{
-        user: "g",
+        user: Constants.GUEST_USER,
         items: [],
     }],
 };

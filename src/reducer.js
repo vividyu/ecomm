@@ -1,5 +1,5 @@
 import initialState from './store';
-
+import { Constants } from "./constants";
 import { Actions } from "./actions/actionConstants";
 
 function reducer(state = initialState, action = {}) {
@@ -29,7 +29,6 @@ function reducer(state = initialState, action = {}) {
       }
     }
 
-
     case Actions.DELETE_ITEM:
       return {
         ...state,
@@ -41,11 +40,16 @@ function reducer(state = initialState, action = {}) {
         ...state,
         initData: [...action.payload],
       };
+
     case Actions.SET_USER:
       return {
         ...state,
         curUser: action.payload,
       };
+
+    case Actions.MERGE_BAGS:
+      return { ...state };
+
     default:
       return { ...state };
   }

@@ -31,10 +31,16 @@ const setCurUser = (user) => ({
   payload: user,
 });
 
+const mergeBags = (user) => ({
+  type: Actions.MERGE_BAGS,
+  payload: user,
+});
+
 export const actions = {
   addItem,
   deleteItem,
   getProducts,
   setProducts,
   setCurUser,
+  mergeBags,
 }
