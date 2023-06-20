@@ -29,7 +29,7 @@ function Login(props) {
 
         if (isValidUser) {
             props.setCurUser(user);
-            props.addItem(user, {});
+            props.addItem(user, null);
 
         } else {
             console.log("Invalid user or password");
@@ -38,7 +38,6 @@ function Login(props) {
         setUser("");
         setPwd("");
     }
-
 
     return (
         <div className="login-container">

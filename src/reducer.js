@@ -9,12 +9,13 @@ function reducer(state = initialState, action = {}) {
       const userBag = state.userBag.find(bag => bag.user === user);
 
       if (!userBag) {
+        //first time login, create user bag
         return {
           ...state,
-          userBag: [...state.userBag, { user, items: [] }],
+          userBag: [...state.userBag, { user: user, items: [] }],
         };
       } else {
-        if (item.length === 0) {
+        if (!item) {
           //user login again, just do nothing with bags 
           return { ...state };
         } else {

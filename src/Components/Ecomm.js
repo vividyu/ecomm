@@ -11,7 +11,7 @@ function Ecomm(props) {
     const curItems = props.userBag.filter(obj => obj.user === curUser)[0].items;
 
     useEffect(() => {
-        props.getProducts();
+        //props.getProducts();
     }, []);
 
     const filteredProducts = (props.initData || []).filter(prod => prod.title.includes(keyword));

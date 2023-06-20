@@ -2,6 +2,7 @@ import ItemInBag from "./ItemInBag";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
+import {v4} from 'uuid';
 
 function Bag(props) {
     const curUser = props.curUser;
@@ -13,7 +14,7 @@ function Bag(props) {
     return (
         <div>
             <div className="item-container">
-                {curItems.map(product => <ItemInBag key={product.id} product={product} />)}
+                {curItems.map(product => <ItemInBag key={v4()} product={product} />)}
             </div>
             <Link className="back-link" to="/">Back</Link>
         </div>
