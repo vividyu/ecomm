@@ -2,13 +2,19 @@ import './ItemInBag.css';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
 
-function ItemInBag({product}) {
+function ItemInBag(props) {
+    const product = props.product;
     return (
         <div>
             <img className="prod-image" src={product.image} alt={product.title}></img>
             <p>Title: {product.title}</p>
             <p>Price: ${product.price}</p>
-            <button>Delete from Bag</button>
+            <span>
+                <button>+</button>
+                <input type='number' readOnly></input>
+                <button>-</button>
+            </span>
+
         </div>
     );
 }
