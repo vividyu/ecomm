@@ -12,7 +12,7 @@ function reducer(state = initialState, action = {}) {
             if (!userBag) {
               return {
                 ...state,
-                userBag: [...state.userBag, { user, items: [item] }],
+                userBag: [...state.userBag, { user, items: [] }],
               };
             } else {
               return {

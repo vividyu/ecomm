@@ -21,7 +21,6 @@ function Login(props) {
         const userInfo = props.userInfo;
         //console.log(userInfo);
 
-
         userInfo.forEach(userInfo => {
             if (userInfo.user === credential.user && userInfo.pwd === credential.password) {
                 isValidUser = true;
