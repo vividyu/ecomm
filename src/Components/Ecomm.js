@@ -7,6 +7,8 @@ import { actions } from "../actions/actionCreator";
 
 function Ecomm(props) {
     const [keyword, setKeyword] = useState("");
+    const curUser = props.curUser;
+    const curItems = props.userBag.filter(obj => obj.user === curUser)[0].items;
 
     useEffect(() => {
         props.getProducts();
@@ -19,7 +21,7 @@ function Ecomm(props) {
             <nav className='nav-container'>
                 <input className="search-bar" placeholder="Search... " value={keyword} onChange={e => setKeyword(e.target.value)} />
                 <Link className="login-link" to="/login">Login</Link>
-                <Link className="bag-link" to="/bag">Bag</Link>
+                <Link className="bag-link" to="/bag">Bag({curItems.length})</Link>
             </nav>
             <div className="item-container">
                 {filteredProducts.map(product => <Item key={product.id} product={product} />)}
@@ -38,7 +40,6 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addItem: () => dispatch(actions.addItem()),
         getProducts: () => dispatch(actions.getProducts())
     }
 }

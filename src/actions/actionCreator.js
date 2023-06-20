@@ -1,9 +1,9 @@
 import {Actions} from "./actionConstants";
 import axios from "axios";
 
-const addItem = (item) => ({
+const addItem = (user, item) => ({
   type: Actions.ADD_ITEM,
-  payload: item,
+  payload: { user, item },
 });
 
 const deleteItem = (item) => ({

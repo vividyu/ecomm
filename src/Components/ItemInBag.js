@@ -1,4 +1,3 @@
-import { useState } from "react";
 import './ItemInBag.css';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";

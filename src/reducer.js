@@ -4,11 +4,26 @@ import { Actions } from "./actions/actionConstants";
 
 function reducer(state = initialState, action = {}) {
     switch (action.type) {
-        case Actions.ADD_ITEM:
-            return {
+        case Actions.ADD_ITEM: {
+            const { user, item } = action.payload;
+          
+            const userBag = state.userBag.find(bag => bag.user === user);
+          
+            if (!userBag) {
+              return {
                 ...state,
-                userBag: [...state.userBag, ...action.payload]
-            };
+                userBag: [...state.userBag, { user, items: [item] }],
+              };
+            } else {
+              return {
+                ...state,
+                userBag: state.userBag.map(bag =>
+                  bag.user === user ? { ...bag, items: [...bag.items, item] } : bag
+                )
+              };
+            }
+          }
+          
 
         case Actions.DELETE_ITEM:
             return {

@@ -10,23 +10,30 @@ function Login(props) {
     const [pwd, setPwd] = useState("");
 
     function handleLogin() {
+        if (!user) {
+            setUser("");
+            setPwd("");
+            return
+        };
+
         const credential = { user: user, password: pwd };
         let isValidUser = false;
         const userInfo = props.userInfo;
-        console.log(userInfo);
+        //console.log(userInfo);
 
 
         userInfo.forEach(userInfo => {
-             if(userInfo.user === credential.user && userInfo.pwd === credential.password){
+            if (userInfo.user === credential.user && userInfo.pwd === credential.password) {
                 isValidUser = true;
-             }
+            }
         });
-            
+
         if (isValidUser) {
             props.setCurUser(user);
+            props.addItem(user, {});
 
         } else {
-            console.error("Invalid user or password");
+            console.log("Invalid user or password");
             alert("Invalid user or password");
         }
         setUser("");
@@ -67,6 +74,7 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        addItem: (user, item) => dispatch(actions.addItem(user, item)),
         setCurUser: (user) => dispatch(actions.setCurUser(user)),
     }
 }

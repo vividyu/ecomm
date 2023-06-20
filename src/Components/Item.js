@@ -1,22 +1,29 @@
-import { useState } from "react";
 import './Item.css';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
 
-function Item({product}) {
+function Item(props) {
+
+    const product = props.product;
+    const curUser = props.curUser;
+
+    function handleAdd() {
+        //alert(curUser);
+        props.addItem(curUser, product);
+    }
+
     return (
         <div>
             <img className="prod-image" src={product.image} alt={product.title}></img>
             <p>Title: {product.title}</p>
             <p>Price: ${product.price}</p>
-            <button>Add to Bag</button>
+            <button onClick={handleAdd}>Add to Bag</button>
         </div>
     );
 }
 
 const mapStateToProps = (state) => (
     {
-        initData: state.initData,
         curUser: state.curUser,
         userBag: state.userBag,
     }
@@ -24,8 +31,7 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addItem: () => dispatch(actions.addItem()),
-        getProducts: () => dispatch(actions.getProducts())
+        addItem: (user, item) => dispatch(actions.addItem(user, item)),
     }
 }
 
