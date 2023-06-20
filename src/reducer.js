@@ -3,47 +3,51 @@ import initialState from './store';
 import { Actions } from "./actions/actionConstants";
 
 function reducer(state = initialState, action = {}) {
-    switch (action.type) {
-        case Actions.ADD_ITEM: {
-            const { user, item } = action.payload;
-          
-            const userBag = state.userBag.find(bag => bag.user === user);
-          
-            if (!userBag) {
-              return {
-                ...state,
-                userBag: [...state.userBag, { user, items: [] }],
-              };
-            } else {
-              return {
-                ...state,
-                userBag: state.userBag.map(bag =>
-                  bag.user === user ? { ...bag, items: [...bag.items, item] } : bag
-                )
-              };
-            }
-          }
-          
+  switch (action.type) {
+    case Actions.ADD_ITEM: {
+      const { user, item } = action.payload;
+      const userBag = state.userBag.find(bag => bag.user === user);
 
-        case Actions.DELETE_ITEM:
-            return {
-                ...state,
-                userBag: state.userBag.filter((item) => item.id !== action.payload.id),
-            };
-
-        case Actions.SET_PROD:
-            return {
-                ...state,
-                initData: [...action.payload],
-            };
-        case Actions.SET_USER:
-            return {
-                ...state,
-                curUser: action.payload,
-            };
-        default:
-            return { ...state };
+      if (!userBag) {
+        return {
+          ...state,
+          userBag: [...state.userBag, { user, items: [] }],
+        };
+      } else {
+        if (item.length === 0) {
+          //user login again, just do nothing with bags 
+          return { ...state };
+        } else {
+          return {
+            ...state,
+            userBag: state.userBag.map(bag =>
+              bag.user === user ? { ...bag, items: [...bag.items, item] } : bag
+            )
+          };
+        }
+      }
     }
+
+
+    case Actions.DELETE_ITEM:
+      return {
+        ...state,
+        userBag: state.userBag.filter((item) => item.id !== action.payload.id),
+      };
+
+    case Actions.SET_PROD:
+      return {
+        ...state,
+        initData: [...action.payload],
+      };
+    case Actions.SET_USER:
+      return {
+        ...state,
+        curUser: action.payload,
+      };
+    default:
+      return { ...state };
+  }
 }
 
 export default reducer;
