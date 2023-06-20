@@ -10,9 +10,9 @@ function ItemInBag(props) {
             <p>Title: {product.title}</p>
             <p>Price: ${product.price}</p>
             <span>
-                <button>+</button>
-                <input type='number' readOnly></input>
                 <button>-</button>
+                <input className='item-count' type='number' readOnly></input>
+                <button>+</button>
             </span>
 
         </div>

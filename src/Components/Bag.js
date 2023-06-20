@@ -8,6 +8,8 @@ function Bag(props) {
     const curItems = props.userBag.filter(obj => obj.user === curUser)[0].items;
     console.log(curItems);
 
+    //map curItems to product:..., count:...
+
     return (
         <div>
             <div className="item-container">
