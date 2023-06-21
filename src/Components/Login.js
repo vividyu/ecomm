@@ -30,12 +30,16 @@ function Login(props) {
 
         if (isValidUser) {
             const prevUser = props.curUser;
-            if (prevUser === Constants.GUEST_USER) {
-                
-
-            }
             props.setCurUser(user);
+
+            //must create bag before merging
             props.createBags(user);
+
+            if (prevUser === Constants.GUEST_USER && user !== Constants.GUEST_USER) {
+                console.log("merge called");
+                props.mergeBags(prevUser, user);
+            }
+
         } else {
             console.log("Invalid user or password");
             alert("Invalid user or password");
@@ -80,6 +84,7 @@ const mapDispatchToProps = (dispatch) => {
         //addItem: (user, product, quantity) => dispatch(actions.addItem(user, product, quantity)),
         setCurUser: (user) => dispatch(actions.setCurUser(user)),
         createBags: (user) => dispatch(actions.createBags(user)),
+        mergeBags: (prevUser, curUser) => dispatch(actions.mergeBags(prevUser, curUser)),
     }
 }
 

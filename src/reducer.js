@@ -97,8 +97,31 @@ function reducer(state = initialState, action = {}) {
         curUser: action.payload,
       };
 
-    case Actions.MERGE_BAGS:
-      return { ...state };
+    case Actions.MERGE_BAGS: {
+      const { prevUser, curUser } = action.payload;
+      const prevBag = state.userBag.find(bag => bag.user === prevUser);
+      //console.log(prevBag.items);
+
+      return {
+        ...state,
+        userBag: state.userBag.map((bag) => {
+          // delete the prevUser's bag
+          if (bag.user === prevUser) {
+            return {
+              ...bag,
+              items: []
+            };
+          } else if (bag.user === curUser) {
+            return {
+              ...bag,
+              items: [...bag.items, ...prevBag.items],
+            };
+          } else {
+            return bag;
+          }
+        }),
+      };
+    }
 
     case Actions.CREATE_BAGS: {
       const user = action.payload;
