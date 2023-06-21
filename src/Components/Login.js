@@ -29,12 +29,11 @@ function Login(props) {
         });
 
         if (isValidUser) {
-            const curUser = props.curUser;
-            if (curUser === Constants.GUEST_USER) {
-                const guestBag = 1;
+            const prevUser = props.curUser;
+            if (prevUser === Constants.GUEST_USER) {
+                
 
             }
-
             props.setCurUser(user);
             props.createBags(user);
         } else {

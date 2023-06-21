@@ -36,9 +36,9 @@ const setCurUser = (user) => ({
   payload: user,
 });
 
-const mergeBags = (user) => ({
+const mergeBags = (prevUser, curUser) => ({
   type: Actions.MERGE_BAGS,
-  payload: user,
+  payload: {prevUser, curUser},
 });
 
 const createBags = (user) => ({

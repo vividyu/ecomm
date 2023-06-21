@@ -10,7 +10,7 @@ function ItemInBag(props) {
 
     useEffect(() => {
         setCount(pCount);
-    }, [props.product]);
+    }, [pCount]);
 
 
     function handleAdd(product) {
@@ -19,10 +19,10 @@ function ItemInBag(props) {
 
     function handleSub(product) {
         //console.log(count);
-        if (count < 0) {
+        if (count < 1) {
             console.error("product id:" + product.id + " -> quantity error");
             return;
-        } else if (count === 0) {
+        } else if (count === 1) {
             props.deleteItem(props.curUser, product);
             return;
         } else {

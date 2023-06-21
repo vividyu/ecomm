@@ -1,7 +1,7 @@
 import ItemInBag from "./ItemInBag";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { actions } from "../actions/actionCreator";
+//import { actions } from "../actions/actionCreator";
 import {v4} from 'uuid';
 
 function Bag(props) {
