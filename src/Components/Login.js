@@ -29,6 +29,12 @@ function Login(props) {
         });
 
         if (isValidUser) {
+            const curUser = props.curUser;
+            if (curUser === Constants.GUEST_USER) {
+                const guestBag = 1;
+
+            }
+
             props.setCurUser(user);
             props.createBags(user);
         } else {
@@ -72,7 +78,7 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addItem: (user, product, quantity) => dispatch(actions.addItem(user, product, quantity)),
+        //addItem: (user, product, quantity) => dispatch(actions.addItem(user, product, quantity)),
         setCurUser: (user) => dispatch(actions.setCurUser(user)),
         createBags: (user) => dispatch(actions.createBags(user)),
     }

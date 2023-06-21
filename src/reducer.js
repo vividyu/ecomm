@@ -1,5 +1,5 @@
 import initialState from './store';
-import { Constants } from "./constants";
+//import { Constants } from "./constants";
 import { Actions } from "./actions/actionConstants";
 
 function reducer(state = initialState, action = {}) {
@@ -11,20 +11,21 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         userBag: state.userBag.map((bag) => {
+          // do not change other users' bags
           if (bag.user !== user) {
-            return bag; // Not the current user, return the bag as is
+            return bag;
           }
 
           const existingItemIndex = bag.items.findIndex((item) => item.product.id === product.id);
 
           if (existingItemIndex === -1) {
-            // If item is not already in the bag, add it
+            // first time to add
             return {
               ...bag,
               items: [...bag.items, { product, quantity }]
             };
           } else {
-            // If item is already in the bag, update the quantity
+            // already exists, add quantity
             const updatedItems = [...bag.items];
             updatedItems[existingItemIndex].quantity += quantity;
 
@@ -35,13 +36,54 @@ function reducer(state = initialState, action = {}) {
           }
         }),
       };
-    }
+    };
 
-    case Actions.DELETE_ITEM:
+    case Actions.SUBTRACT_ITEM: {
+      const { user, product, quantity } = action.payload;
       return {
         ...state,
-        userBag: state.userBag.filter((item) => item.id !== action.payload.id),
+        userBag: state.userBag.map((bag) => {
+          // do not change other users' bags
+          if (bag.user !== user) {
+            return bag;
+          }
+
+          const existingItemIndex = bag.items.findIndex((item) => item.product.id === product.id);
+
+          if (existingItemIndex === -1) {
+            //should return error if item does not exist
+          }
+
+          // item is already in the bag, update the quantity
+          const updatedItems = [...bag.items];
+          updatedItems[existingItemIndex].quantity -= quantity;
+
+          return {
+            ...bag,
+            items: updatedItems
+          };
+        }),
       };
+    };
+
+    case Actions.DELETE_ITEM: {
+      const { user, product } = action.payload;
+      return {
+        ...state,
+        userBag: state.userBag.map((bag) => {
+          // do not change other users' bags
+          if (bag.user !== user) {
+            return bag;
+          }
+
+          const updatedItems = bag.items.filter((item) => item.product.id !== product.id);
+          return {
+            ...bag,
+            items: updatedItems
+          };
+        }),
+      };
+    };
 
     case Actions.SET_PROD:
       return {

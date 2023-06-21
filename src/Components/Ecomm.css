@@ -25,3 +25,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+
+#bag-item-count {
+    text-decoration: solid;
+    color: red;
+}

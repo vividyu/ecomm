@@ -9,25 +9,10 @@ function Bag(props) {
     const curItems = props.userBag.filter(obj => obj.user === curUser)[0].items;
     //console.log(curItems);
 
-    //map curItems to {product:..., count:...}
-    const groupedItems = curItems.reduce((result, item) => {
-        const key = item.id;
-        const existingItem = result.find(a => a.item.id === key);
-    
-        if (existingItem) {
-          existingItem.count++;
-        } else {
-          result.push({ item: item, count: 1 });
-        }
-        return result;
-      }, []);
-
-      console.log(groupedItems);
-
     return (
         <div>
             <div className="item-container">
-                {groupedItems.map(gItem => <ItemInBag key={v4()} product={gItem} />)}
+                {curItems.map(gItem => <ItemInBag key={v4()} product={gItem} />)}
             </div>
             <Link className="back-link" to="/">Back</Link>
         </div>
@@ -41,10 +26,4 @@ const mapStateToProps = (state) => (
     }
 )
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurUser: () => dispatch(actions.addItem()),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Bag);
+export default connect(mapStateToProps)(Bag);
