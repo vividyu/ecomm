@@ -48,27 +48,51 @@ function Login(props) {
         setPwd("");
     }
 
-    return (
-        <div className="login-container">
-            <img className="ikun" src={ikun} alt="ikun"></img>
-            <div className="input-box">
-                {"Currently you are signed as: "}
-                <span id="userDisplay">{props.curUser}</span>
+    function handleLogout() {
+        props.setCurUser(Constants.GUEST_USER);
+
+        //must create bag before merging
+        props.createBags(Constants.GUEST_USER);
+
+        setUser("");
+        setPwd("");
+    }
+
+    if (props.curUser === Constants.GUEST_USER) {
+        return (
+            <div className="login-container">
+                <img className="ikun" src={ikun} alt="ikun"></img>
+                <div className="input-box">
+                    {"User: "}
+                    <input value={user} onChange={e => setUser(e.target.value)}></input>
+                </div>
+                <div className="input-box">
+                    {"Password: "}
+                    <input value={pwd} onChange={e => setPwd(e.target.value)}></input>
+                </div>
+                <div className="input-box">
+                    <button onClick={handleLogin}>Sign in</button>
+                </div>
+                <Link className="back-link" to="/">Back</Link>
             </div>
-            <div className="input-box">
-                {"User: "}
-                <input value={user} onChange={e => setUser(e.target.value)}></input>
+        )
+    } else {
+        return (
+            <div className="login-container">
+                <img className="ikun" src={ikun} alt="ikun"></img>
+                <div className="input-box">
+                    {"Currently you are signed as: "}
+                    <span id="userDisplay">{props.curUser}</span>
+                </div>
+                <div className="input-box">
+                    <button onClick={handleLogout}>Sign out</button>
+                </div>
+                <Link className="back-link" to="/">Back</Link>
             </div>
-            <div className="input-box">
-                {"Password: "}
-                <input value={pwd} onChange={e => setPwd(e.target.value)}></input>
-            </div>
-            <div className="input-box">
-                <button onClick={handleLogin}>Sign in</button>
-            </div>
-            <Link className="back-link" to="/">Back</Link>
-        </div>
-    )
+        )
+    }
+
+
 }
 
 const mapStateToProps = (state) => (

@@ -8,6 +8,11 @@
     margin: 20px;
 }
 
+.hide-display{
+    display: none;
+}
+
 #userDisplay{
     font: 2em sans-serif;
 }
+

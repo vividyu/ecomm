@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Item from './Item';
 import { connect } from 'react-redux';
 import { actions } from "../actions/actionCreator";
+import { Constants } from "../constants";
 
 function Ecomm(props) {
     const [keyword, setKeyword] = useState("");
@@ -29,7 +30,7 @@ function Ecomm(props) {
         <div className="main-container">
             <nav className='nav-container'>
                 <input className="search-bar" placeholder="Search... " value={keyword} onChange={e => setKeyword(e.target.value)} />
-                <Link className="login-link" to="/login">Login</Link>
+                <Link className="login-link" to="/login">{curUser === Constants.GUEST_USER ? "Login" : curUser}</Link>
                 <Link className="bag-link" to="/bag">Bag(<span id='bag-item-count'>{itemTotal}</span>)</Link>
             </nav>
             <div className="item-container">
